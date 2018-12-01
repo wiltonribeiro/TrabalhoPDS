@@ -20,11 +20,7 @@ public abstract class Propriedade implements Casa{
     
     public void setProprietario(Jogador proprietario) {
     	this.proprietario = proprietario;
-    }
-    
-    public void acao(Jogador jogador){
-        
-    }
+    }   
     
     public void pagarTaxa(Jogador jogador) {
     	if(jogador != this.proprietario) {

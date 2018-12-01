@@ -10,7 +10,7 @@ public class BancoImobiliario {
     private Tabuleiro tabuleiro;
     private Copo copo;   
     private int numJogadores;   
-    private ArrayList<GameImage> pecas;
+    private ArrayList<Peca> pecas;
     
 
     public BancoImobiliario() {        
@@ -27,19 +27,19 @@ public class BancoImobiliario {
     }
     
     public void realizarJogada(){                     
-        for(Jogador jogador: jogadores){
+        for(Jogador jogador: jogadores){                                  
             System.out.println("jogador comecou" + jogador.getNome());
             if(jogador.getSaldo() > 0)
-                jogador.movimentarJogador();
+                jogador.movimentarJogador();           
             else
-                jogadores.remove(jogador);
+                jogadores.remove(jogador);                       
         }
     }
     
     public void addJogador(String nome){
         Casa casaInicial = tabuleiro.obterCasaInicial();
-        GameImage peca = pecas.get(0);
-        peca.draw();
+        Peca peca = pecas.get(0);      
+        
         jogadores.add(new Jogador(casaInicial, 2458, nome, copo, tabuleiro,peca));
         pecas.remove(peca);
         numJogadores++;             
@@ -47,11 +47,11 @@ public class BancoImobiliario {
     
     public void criarPecas(){
         for(int i=0; i<6; i++){
-            pecas.add(new GameImage("src//recursos//sprite//pecas//peca"+(i+1)+".png"));
+            pecas.add(new Peca("src//recursos//sprite//pecas//peca"+(i+1)+".png"));
         }
     }
     
-    public ArrayList<GameImage> getPecas(){        
+    public ArrayList<Peca> getPecas(){        
         return pecas;
     }
       

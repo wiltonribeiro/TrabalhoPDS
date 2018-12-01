@@ -77,5 +77,9 @@ public class Jogador {
         this.tabuleiro = tabuleiro;
     }
     
+    public int getValorDados() {
+    	return this.copo.obterTotal();
+    }
+    
     
 }

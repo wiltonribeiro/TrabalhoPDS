@@ -9,10 +9,9 @@ public class Terreno extends Propriedade{
     int quatroCasas;
     int hotel;
     int qtdCasas;
-    int aluguel;
     
-    public Terreno(String nome, int valor, int umaCasa, int duasCasas, int tresCasas, int quatroCasas, int hotel) {
-        super(nome, valor);
+    public Terreno(String nome, int preco, int aluguel, int umaCasa, int duasCasas, int tresCasas, int quatroCasas, int hotel) {
+        super(nome, preco, aluguel);
         this.umaCasa = umaCasa;
         this.duasCasas = duasCasas;
         this.tresCasas = tresCasas;

@@ -4,16 +4,17 @@ import interfaces.Casa;
 import pojo.Jogador;
 
 public abstract class Propriedade implements Casa{
-    String nome;
-    int preco;
-    int taxa;
-    Jogador proprietario;
+    private String nome;
+    private int preco;
+    private int taxa, x, y;
+    private Jogador proprietario;
     
-    protected Propriedade(String nome, int preco, int taxa){
+    protected Propriedade(String nome, int preco, int taxa, int x, int y){
         this.nome = nome;
         this.taxa = taxa;
-        this.preco = preco;
-        this.preco = preco;
+        this.preco = preco;       
+        this.x = x;
+        this.y = y;        
         proprietario = null;
     }
     
@@ -22,7 +23,7 @@ public abstract class Propriedade implements Casa{
     }
     
     public void acao(Jogador jogador){
-   
+        
     }
     
     public void pagarTaxa(Jogador jogador) {
@@ -40,6 +41,14 @@ public abstract class Propriedade implements Casa{
     			this.proprietario = jogador;
     		}
     	}
+    }
+    
+    public int getX(){
+        return x;
+    }
+    
+    public int getY(){
+        return y;
     }
     
 }

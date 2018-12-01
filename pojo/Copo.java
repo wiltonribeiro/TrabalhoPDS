@@ -30,6 +30,7 @@ public class Copo {
     }
     
     public int obterTotal(){
+        total = 0;
         for(Dado dado: dados){
             total += dado.getValor();
         }

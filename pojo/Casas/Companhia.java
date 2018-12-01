@@ -4,11 +4,11 @@ import pojo.Copo;
 import pojo.Jogador;
 
 public class Companhia extends Propriedade{
-    int taxa;
+    private int taxa;
 
-    public Companhia(String nome, int valor, int taxa) {
-        super(nome, valor, taxa);
-        this.taxa = taxa;
+    public Companhia(String nome, int valor, int taxa, int x, int y) {
+        super(nome, valor, taxa, x, y);
+        this.taxa = taxa;        
     }
 
     @Override
@@ -18,6 +18,6 @@ public class Companhia extends Propriedade{
     
     public int calcularTaxa(Jogador jogador) {
     	return jogador.getValorDados() * this.taxa;
-    }
+    } 
 
 }

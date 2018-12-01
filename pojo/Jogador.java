@@ -1,5 +1,6 @@
 package pojo;
 
+import JGamePlay.GameImage;
 import interfaces.Casa;
 import pojo.Casas.Propriedade;
 
@@ -9,29 +10,30 @@ public class Jogador {
     private String nome;
     private Copo copo;
     private Tabuleiro tabuleiro;
+    private GameImage peca;
 
-    public Jogador(Casa localizacao, int saldo, String nome, Copo copo, Tabuleiro tabuleiro) {
+    public Jogador(Casa localizacao, int saldo, String nome, Copo copo, Tabuleiro tabuleiro, GameImage peca) {
         this.localizacao = localizacao;
         this.saldo = saldo;
         this.nome = nome;
         this.copo = copo;
         this.tabuleiro = tabuleiro;
+        this.peca = peca;        
+        peca.setPosition(localizacao.getX(), localizacao.getY());        
     }
     
     public void movimentarJogador(){
         copo.lancarDados();
         int valorDados = copo.obterTotal();
+        System.out.println("jogador lancou copos"+valorDados);
         Casa novaCasa = tabuleiro.obterCasa(localizacao, valorDados);                             
-        localizacao = novaCasa;        
-    }
-    
-    public void opcaoJogador(){
-        if(localizacao instanceof Propriedade){
-            
-        } else {
-            localizacao.acao(this);
-        }
-    }
+        localizacao = novaCasa;
+        
+        //acho que é aqui
+        peca.setPosition(localizacao.getX(), localizacao.getY());        
+        
+        localizacao.acao(this);
+    }       
     
     public Carta tirarCarta(){
         return tabuleiro.tirarCarta();

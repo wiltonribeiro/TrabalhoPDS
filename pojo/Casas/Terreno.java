@@ -10,8 +10,8 @@ public class Terreno extends Propriedade{
     int hotel;
     int qtdCasas;
     
-    public Terreno(String nome, int preco, int aluguel, int umaCasa, int duasCasas, int tresCasas, int quatroCasas, int hotel) {
-        super(nome, preco, aluguel);
+    public Terreno(String nome, int preco, int aluguel, int umaCasa, int duasCasas, int tresCasas, int quatroCasas, int hotel, int x, int y) {
+        super(nome, preco, aluguel, x, y);
         this.umaCasa = umaCasa;
         this.duasCasas = duasCasas;
         this.tresCasas = tresCasas;
@@ -23,7 +23,5 @@ public class Terreno extends Propriedade{
     public void acao(Jogador jogador) {
         
     }
-    
-    
     
 }

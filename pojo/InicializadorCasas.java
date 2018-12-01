@@ -3,6 +3,7 @@ package pojo;
 import interfaces.Casa;
 import java.util.ArrayList;
 import java.util.List;
+import pojo.Casas.Inicio;
 
 public class InicializadorCasas {
     private static InicializadorCasas inicializadorCasas;
@@ -20,7 +21,7 @@ public class InicializadorCasas {
     }
     
     private void inicializarCasas(){
-        casas.add();
+        casas.add(new Inicio());
     }
     
     public List<Casa> getCasas(){

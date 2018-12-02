@@ -14,8 +14,8 @@ public class SorteReves implements Casa{
 
     @Override
     public void acao(Jogador jogador) {
-        Carta carta = jogador.tirarCarta();
-        jogador.setSaldo(jogador.getSaldo()+carta.getValor());
+//        Carta carta = jogador.tirarCarta();
+//        jogador.setSaldo(jogador.getSaldo()+carta.getValor());
     }
 
     @Override

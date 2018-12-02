@@ -11,11 +11,6 @@ public class Tela {
     private Keyboard keyboard;                             
     private GameImage backGround;        
     
-    //    
-//    backGround.draw();
-//                imagem.draw();
-//                janela.display();
-    
     private Tela(){
         janela = new Window(700,700);        
         keyboard = janela.getKeyboard();                             

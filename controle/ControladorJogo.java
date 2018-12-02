@@ -38,5 +38,7 @@ public class ControladorJogo {
         while(!banco.jogoAcabou()){
             banco.realizarJogada();            
         }
+        
+        JOptionPane.showConfirmDialog(null, "O jogador "+banco.getVencedor().getNome()+" venceu");
     }        
 }

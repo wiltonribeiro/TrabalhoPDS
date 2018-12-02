@@ -8,14 +8,4 @@ public class TerrenoLilas extends Terreno {
         super(nome, preco, aluguel, umaCasa, duasCasas, tresCasas, quatroCasas, hotel, x, y, construirCasa);
     }
 
-   
-    
-   
-    @Override
-    public void acao(Jogador jogador) {
-        
-    }
-    
-    
-    
 }

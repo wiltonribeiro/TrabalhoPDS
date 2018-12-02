@@ -2,6 +2,8 @@ package pojo;
 
 import interfaces.Casa;
 import java.util.List;
+import pojo.Casas.Propriedade;
+import pojo.Casas.Terrenos.Terreno;
 import sun.security.jca.GetInstance;
 
 class Tabuleiro {    
@@ -40,6 +42,20 @@ class Tabuleiro {
         cartas.remove(carta);
         cartas.add(0, carta);        
         return carta;
+    }
+    
+    public boolean jogadorPossuiTodosTerrenos(Jogador jogador, Class t){
+        boolean possuiTerreno = true;
+        for(Casa casa: casas){            
+            if(casa.getClass().getSimpleName().equals(t.getSimpleName())){
+                Propriedade p = (Propriedade) casa;               
+                if(p.getProprietario() == null || !p.getProprietario().equals(jogador)) possuiTerreno = false;
+            }
+        }
+        
+        System.out.println("-----");
+        
+        return possuiTerreno;
     }
     
 }

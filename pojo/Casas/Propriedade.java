@@ -15,28 +15,21 @@ public abstract class Propriedade implements Casa{
         this.preco = preco;       
         this.x = x;
         this.y = y;        
-        proprietario = null;
+        this.proprietario = null;
     }
     
-    public void setProprietario(Jogador proprietario) {
-    	this.proprietario = proprietario;
-    }   
-    
-    public void pagarTaxa(Jogador jogador) {
-    	if(jogador != this.proprietario) {
-    		if(jogador.getSaldo() >= this.taxa) {
-    			jogador.setSaldo(jogador.getSaldo()-this.preco);
-    		}
-    	}
-    }
+    public abstract void pagarTaxa(Jogador jogador);        
     
     public void comprarPropriedade(Jogador jogador) {
-    	if(jogador != this.proprietario) {
-    		if(jogador.getSaldo() >= this.preco) {
-    			jogador.setSaldo(jogador.getSaldo()-this.preco);
-    			this.proprietario = jogador;
-    		}
-    	}
+        
+        //realizando a compra
+        jogador.setSaldo(jogador.getSaldo()-this.preco);
+    	jogador.addPropriedade(this);        
+        this.proprietario = jogador;
+    }
+    
+    public Jogador getProprietario(){
+        return proprietario;
     }
     
     public int getX(){
@@ -46,5 +39,16 @@ public abstract class Propriedade implements Casa{
     public int getY(){
         return y;
     }
-    
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getPreco() {
+        return preco;
+    }
+
+    public int getTaxa() {
+        return taxa;
+    } 
 }

@@ -26,14 +26,19 @@ public class BancoImobiliario {
         return jogadores.size() == 1;
     }
     
-    public void realizarJogada(){                     
-        for(Jogador jogador: jogadores){                                  
-            System.out.println("jogador comecou" + jogador.getNome());
+    public void realizarJogada(){
+        List<Jogador> jogadoresParaSair = new ArrayList<>();
+        for(Jogador jogador: jogadores){                                              
             if(jogador.getSaldo() > 0)
                 jogador.movimentarJogador();           
             else
-                jogadores.remove(jogador);                       
+                jogadoresParaSair.add(jogador);                       
         }
+        
+        for(Jogador jogador: jogadoresParaSair)
+            jogadores.remove(jogador);
+        
+        jogadoresParaSair.clear();
     }
     
     public void addJogador(String nome){
@@ -53,6 +58,10 @@ public class BancoImobiliario {
     
     public ArrayList<Peca> getPecas(){        
         return pecas;
+    }
+    
+    public Jogador getVencedor(){
+        return jogadores.get(0);
     }
       
 }

@@ -1,29 +1,22 @@
 package pojo;
 
-public class Carta {
+import pojo.Cartas.AcaoCarta;
+
+public class Carta {      
     private String descricao;
-    private int valor;
+    private AcaoCarta acaoCarta;
 
-    public Carta(String descricao, int valor) {
+    public Carta(String descricao, AcaoCarta acaoCarta) {
         this.descricao = descricao;
-        this.valor = valor;
-    }
-
+        this.acaoCarta = acaoCarta;
+    }    
+    
     public String getDescricao() {
         return descricao;
     }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getValor() {
-        return valor;
-    }
-
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
     
-    
+    public void acao(Jogador jogador){
+        acaoCarta.acaoCarta(this, jogador);
+    }
+        
 }

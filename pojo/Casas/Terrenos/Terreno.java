@@ -93,7 +93,7 @@ public abstract class Terreno extends Propriedade{
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName()+ " Nome= "+this.getNome()+" qtdCasas=" + qtdCasas + '}';
+        return this.getClass().getSimpleName()+ " Nome: "+this.getNome()+" qtdCasas:" + qtdCasas;
     }
     
     

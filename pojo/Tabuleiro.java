@@ -39,9 +39,12 @@ class Tabuleiro {
     
     public Carta tirarCarta(){
         Carta carta = cartas.get(cartas.size()-1);
-        cartas.remove(carta);
-        cartas.add(0, carta);        
+        cartas.remove(carta);                
         return carta;
+    }
+    
+    public void devolverCarta(Carta carta){
+        cartas.add(0,carta);
     }
     
     public boolean jogadorPossuiTodosTerrenos(Jogador jogador, Class t){

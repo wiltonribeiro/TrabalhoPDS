@@ -55,7 +55,7 @@ public class Companhia extends Propriedade{
 
     @Override
     public String toString() {
-        return "Companhia " + "nome=" + this.getNome() + '}';
+        return "Companhia " + "nome:" + this.getNome();
     }
 
     

@@ -38,11 +38,15 @@ public class Jogador {
         JOptionPane.showMessageDialog(null, "Ei "+this.getNome()+"! Seus dados deram "+valorDados);
         
         localizacao.acao(this);
-        JOptionPane.showMessageDialog(null, "Ei "+this.getNome()+"! Seus saldo é: "+this.getSaldo()+"\n Seus imovéis são: "+this.mostrarPropriedades());
+        JOptionPane.showMessageDialog(null, "Ei "+this.getNome()+"! Seus saldo é: "+this.getSaldo()+"\nSeus imovéis são:\n"+this.mostrarPropriedades());
     }       
     
     public Carta tirarCarta(){
         return tabuleiro.tirarCarta();
+    }
+    
+    public void devolverCarta(Carta carta){
+        tabuleiro.devolverCarta(carta);
     }
 
     public Casa getLocalizacao() {

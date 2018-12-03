@@ -34,7 +34,7 @@ public class Copo {
         for(Dado dado: dados){
             total += dado.getValor();
         }
-        return total;
+        return 10;
     }
     
     public boolean verificaDupla(){
@@ -46,7 +46,7 @@ public class Copo {
                 break;
             }                                     
                 
-        return dupla;
+        return true;
     }
     
     

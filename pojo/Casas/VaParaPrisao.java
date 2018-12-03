@@ -12,7 +12,8 @@ public class VaParaPrisao implements Casa{
         JOptionPane.showMessageDialog(null, "Perdeu playboy! Você vai para a prisão.");
         Casa prisao = Tabuleiro.getInstance().obterCasaPrisao();
         jogador.setLocalizacao(prisao);
-        prisao.acao(jogador);
+        jogador.setPreso(true);
+        
     }
 
     @Override

@@ -13,7 +13,8 @@ public class VaPrisao implements AcaoCarta{
         JOptionPane.showMessageDialog(null, carta.getDescricao());
         Casa prisao = Tabuleiro.getInstance().obterCasaPrisao();
         jogador.setLocalizacao(prisao);
-        prisao.acao(jogador);
+
+        jogador.setPreso(true);
         jogador.devolverCarta(carta);
     }
 

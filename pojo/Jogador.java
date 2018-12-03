@@ -23,16 +23,36 @@ public class Jogador {
         this.saldo = saldo;
         this.nome = nome;
         this.copo = copo;        
-        this.peca = peca;            
+        this.peca = peca;           
         this.propriedades = new ArrayList<>();
         this.tabuleiro = Tabuleiro.getInstance();
         this.rodadasPreso = 0;
-        peca.moverPeca(localizacao.getX(), localizacao.getY());                        
+        this.preso = false;
+        
+        peca.acao(localizacao.getX(), localizacao.getY());                        
     }
     
     public void realizaJogada(){        
-        copo.lancarDados();
-        int valorDados = copo.obterTotal();                
+    	copo.lancarDados();
+        int valorDados = copo.obterTotal();
+        
+        int qtdDuplas = 0;
+        while(copo.verificaDupla()) {
+        	qtdDuplas++;
+        	JOptionPane.showMessageDialog(null, 
+    				"Você tirou uma dupla de dados pela "+qtdDuplas+"º vez! Dados duplos: " + valorDados/copo.quantidadeDados()
+    				);
+        	if(qtdDuplas == 3) {
+        		JOptionPane.showMessageDialog(null, "Você tirou três duplas de dados, vá para a prisão");
+        		setLocalizacao(tabuleiro.obterCasaPrisao());
+        		setPreso(true);                            
+        		break;
+        	}
+        	//peca.acao(localizacao.getX(), localizacao.getY()); 
+        	copo.lancarDados();
+        }
+        
+        valorDados = copo.obterTotal();
 
         if(preso){
            if(possuiCartaSairPrisao()){
@@ -66,7 +86,7 @@ public class Jogador {
             bonusDaRodada();
         
         localizacao = novaCasa;                          
-        peca.moverPeca(localizacao.getX(), localizacao.getY());              
+        peca.acao(localizacao.getX(), localizacao.getY());              
                 
         
         JOptionPane.showMessageDialog(null, "Ei "+this.getNome()+"! Seus dados deram "+valorDados);        

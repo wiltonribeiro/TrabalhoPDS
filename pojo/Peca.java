@@ -8,7 +8,7 @@ public class Peca extends GameImage {
         super(fileName);
     }
     
-    public void moverPeca(int x, int y){
+    public void acao(int x, int y){
         Tela.getInstace().drawBackground();
         this.setPosition(x, y);
         Tela.getInstace().drawPeca(this);

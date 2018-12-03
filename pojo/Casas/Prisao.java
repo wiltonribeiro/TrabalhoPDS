@@ -7,8 +7,7 @@ public class Prisao implements Casa{
 
     @Override
     public void acao(Jogador jogador) {
-        jogador.setPreso(true);
-        //implementar depois
+     
     }
 
     @Override

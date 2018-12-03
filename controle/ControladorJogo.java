@@ -11,7 +11,7 @@ public class ControladorJogo {
     public BancoImobiliario banco;  
                     
     public ControladorJogo() {
-        banco = new BancoImobiliario();         
+        banco = BancoImobiliario.getInstance();         
     }        
     
     public void iniciar(){       
@@ -39,6 +39,6 @@ public class ControladorJogo {
             banco.realizarJogada();            
         }
         
-        JOptionPane.showConfirmDialog(null, "O jogador "+banco.getVencedor().getNome()+" venceu");
+        JOptionPane.showMessageDialog(null, "O jogador "+banco.getVencedor().getNome()+" venceu");
     }        
 }

@@ -6,20 +6,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BancoImobiliario {
-    private List<Jogador> jogadores;
-    private Tabuleiro tabuleiro;
+    private List<Jogador> jogadores;    
     private Copo copo;   
     private int numJogadores;   
     private ArrayList<Peca> pecas;
+    private static BancoImobiliario bancoImobiliario;
     
 
-    public BancoImobiliario() {        
+    private BancoImobiliario() {        
         copo = Copo.getInstance(2);      
         jogadores = new ArrayList<>();
-        numJogadores = 0;        
-        tabuleiro = Tabuleiro.getInstance();
-        pecas = new ArrayList<>();
-        criarPecas();
+        numJogadores = 0;                
+        pecas = new InicializadorPecas().getPecas();
+    }
+    
+    public static BancoImobiliario getInstance(){
+        if(bancoImobiliario == null){
+            bancoImobiliario = new BancoImobiliario();
+        }
+        return bancoImobiliario;
     }
     
     public boolean jogoAcabou(){        
@@ -30,7 +35,7 @@ public class BancoImobiliario {
         List<Jogador> jogadoresParaSair = new ArrayList<>();
         for(Jogador jogador: jogadores){                                              
             if(jogador.getSaldo() > 0)
-                jogador.movimentarJogador();           
+                jogador.realizaJogada();            
             else
                 jogadoresParaSair.add(jogador);                       
         }
@@ -42,22 +47,20 @@ public class BancoImobiliario {
     }
     
     public void addJogador(String nome){
-        Casa casaInicial = tabuleiro.obterCasaInicial();
+        Casa casaInicial = Tabuleiro.getInstance().obterCasaInicial();
         Peca peca = pecas.get(0);      
         
-        jogadores.add(new Jogador(casaInicial, 2458, nome, copo, tabuleiro,peca));
+        jogadores.add(new Jogador(casaInicial, 2458, nome, copo,peca));
         pecas.remove(peca);
         numJogadores++;             
     }    
     
-    public void criarPecas(){
-        for(int i=0; i<6; i++){
-            pecas.add(new Peca("src//recursos//sprite//pecas//peca"+(i+1)+".png"));
-        }
-    }
-    
     public ArrayList<Peca> getPecas(){        
         return pecas;
+    }
+    
+    public List<Jogador> getJogadores(){        
+        return jogadores;
     }
     
     public Jogador getVencedor(){

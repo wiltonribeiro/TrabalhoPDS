@@ -42,21 +42,24 @@ public class InicializadorCartas {
         cartas.add(new Carta("Você estacionou seu carro em um local proibido e entrou na contra mão.", new Paga(30)));
         cartas.add(new Carta("O médico lhe recomendou repouso em um bom hotel de montanha.", new Paga(45)));
         cartas.add(new Carta("A geada prejudicou boa parte da sua safra de café.", new Paga(50)));
-        cartas.add(new Carta("Avance até o ponto de partida e ...", new VaInicio()));
+        //
         cartas.add(new Carta("Você trocou seu carro usado com amigo e ainda saiu lucrando", new Recebe(50)));
         cartas.add(new Carta("O seu cachorro policial ganhou o prêmio da Kennel Clube", new Recebe(100)));
         cartas.add(new Carta("Seus parentes do interior vieram passar umas férias na sua casa", new Paga(45)));
         cartas.add(new Carta("Você jogou na loteria esportiva com conjunto de amigos e ganharam !", new Recebe(20)));
-        cartas.add(new Carta("Vá para a prisão sem receber nada, talvez eu lhe faça uma visita", new VaPrisao()));
+        //
         cartas.add(new Carta("Um amigo pediu lhe um empréstimo, não há como recusar", new Paga(15)));
         cartas.add(new Carta("Inesperadamente você recebeu uma herança que já estava esquecida", new Recebe(100)));
         cartas.add(new Carta("Você achou interessante assistir a novo temporada de ballet. Compre os ingressos.", new Paga(30)));
-        cartas.add(new Carta("Você apostos com seus parceiros deste jogo e ganhou, receba 50 de cada um.", new Aposta())); //aqui tmb
+        //
         cartas.add(new Carta("Saida livre da prisao", new SairPrisao()));
         cartas.add(new Carta("Você está com sorte, suas ações na Bolsa de Valores estão em alta.", new Recebe(200)));
         cartas.add(new Carta("Renove a tempo a licença do seu automóvel.", new Paga(30)));
         cartas.add(new Carta("Você acaba de receber uma parcela do seu 13º salário.", new Recebe(50)));
-        cartas.add(new Carta("Você tiru o primeiro lugar do tornei de tênis do seu clube. Parabéns !", new Recebe(100)));        
+        cartas.add(new Carta("Você tiru o primeiro lugar do tornei de tênis do seu clube. Parabéns !", new Recebe(100)));
+        cartas.add(new Carta("Você apostou com seus parceiros deste jogo e ganhou, receba 50 de cada um.", new Aposta()));        
+        cartas.add(new Carta("Avance até o ponto de partida e ...", new VaInicio()));
+        cartas.add(new Carta("Vá para a prisão sem receber nada, talvez eu lhe faça uma visita", new VaPrisao()));
     }
     
     public List<Carta> getCartas(){

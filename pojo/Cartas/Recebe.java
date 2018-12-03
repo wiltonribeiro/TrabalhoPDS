@@ -22,6 +22,5 @@ public class Recebe implements AcaoCarta{
         jogador.setSaldo(jogador.getSaldo()+this.valor);
         jogador.devolverCarta(carta);
     }
-    
-    
+        
 }

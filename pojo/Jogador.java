@@ -4,42 +4,79 @@ import JGamePlay.GameImage;
 import interfaces.Casa;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import pojo.Cartas.SairPrisao;
 import pojo.Casas.Propriedade;
 
 public class Jogador {
+    private boolean preso;
+    private Carta cartaSair;
     private Casa localizacao;
-    private int saldo;
+    private int saldo, rodadasPreso;
     private String nome;
-    private Copo copo;
-    private Tabuleiro tabuleiro;
+    private Copo copo;    
     private Peca peca;
     private ArrayList<Propriedade> propriedades;
+    private Tabuleiro tabuleiro;
 
-    public Jogador(Casa localizacao, int saldo, String nome, Copo copo, Tabuleiro tabuleiro, Peca peca) {
+    public Jogador(Casa localizacao, int saldo, String nome, Copo copo, Peca peca) {
         this.localizacao = localizacao;
         this.saldo = saldo;
         this.nome = nome;
-        this.copo = copo;
-        this.tabuleiro = tabuleiro;
+        this.copo = copo;        
         this.peca = peca;            
         this.propriedades = new ArrayList<>();
+        this.tabuleiro = Tabuleiro.getInstance();
+        this.rodadasPreso = 0;
         peca.moverPeca(localizacao.getX(), localizacao.getY());                        
     }
     
-    public void movimentarJogador(){
-        
+    public void realizaJogada(){        
         copo.lancarDados();
-        int valorDados = copo.obterTotal();        
-        Casa novaCasa = tabuleiro.obterCasa(localizacao, valorDados);                             
+        int valorDados = copo.obterTotal();                
+
+        if(preso){
+           if(possuiCartaSairPrisao()){
+               JOptionPane.showMessageDialog(null, "Você vai sair da prisão porque sua carta te permite !");
+               usarCartaSairPrisao();
+           } else{
+               if(rodadasPreso == 3){
+                   JOptionPane.showMessageDialog(null, "Você já está a três rodadas preso, pague 50 e continue jogando");
+                   this.setSaldo(this.getSaldo()-50);
+                   this.sairPrisao();
+                   movimentarJogador(valorDados);
+               } else{
+                    if(copo.verificaDupla()){
+                        JOptionPane.showMessageDialog(null, "Você tirou uma dupla de dados ! Você saiu da prisão\n! Dados duplos: "+valorDados/copo.quantidadeDados());
+                        sairPrisao();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Nada acontece, continue na prisão");
+                        rodadasPreso++;                   
+                    } 
+               }               
+           }
+        } else movimentarJogador(valorDados);                                                   
+    }       
+    
+    
+    public void movimentarJogador(int valorDados){
+    
+        Casa novaCasa = tabuleiro.obterCasa(localizacao, valorDados);                                             
+        if(tabuleiro.obterPosicaoCasa(novaCasa) < tabuleiro.obterPosicaoCasa(localizacao))
+            bonusDaRodada();
+        
         localizacao = novaCasa;                          
         peca.moverPeca(localizacao.getX(), localizacao.getY());              
                 
-        //mudar depois
-        JOptionPane.showMessageDialog(null, "Ei "+this.getNome()+"! Seus dados deram "+valorDados);
         
+        JOptionPane.showMessageDialog(null, "Ei "+this.getNome()+"! Seus dados deram "+valorDados);        
         localizacao.acao(this);
         JOptionPane.showMessageDialog(null, "Ei "+this.getNome()+"! Seus saldo é: "+this.getSaldo()+"\nSeus imovéis são:\n"+this.mostrarPropriedades());
-    }       
+    }
+    
+    public void bonusDaRodada(){        
+        this.saldo += 200;
+    }
     
     public Carta tirarCarta(){
         return tabuleiro.tirarCarta();
@@ -113,6 +150,28 @@ public class Jogador {
         }
                 
         return tudo;
+    }
+    
+    public boolean possuiCartaSairPrisao(){
+        return cartaSair != null;
+    }
+    
+    public void usarCartaSairPrisao(){        
+        sairPrisao();
+        this.devolverCarta(cartaSair);
+    }
+    
+    public void guardarCartaSairPrisao(Carta carta){
+        cartaSair = carta;
+    }
+    
+    public void setPreso(boolean preso){
+        this.preso = preso;
+    }
+    
+    public void sairPrisao(){
+        this.setPreso(false);  
+        this.rodadasPreso = 0;
     }
     
 }

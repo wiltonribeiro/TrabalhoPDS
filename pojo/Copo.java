@@ -7,7 +7,7 @@ public class Copo {
     private List<Dado> dados;
     private int qntdDados;
     private int total;
-    private static Copo copo;
+    private static Copo copo;    
     
     public static Copo getInstance(int qntd){
         if(copo == null){
@@ -37,4 +37,20 @@ public class Copo {
         return total;
     }
     
+    public boolean verificaDupla(){
+        boolean dupla = true;
+        
+        for(Dado dado: dados)
+            if(dados.get(0).getValor() != dado.getValor()){
+                dupla = false;
+                break;
+            }                                     
+                
+        return dupla;
+    }
+    
+    
+    public int quantidadeDados(){
+        return dados.size();
+    }
 }

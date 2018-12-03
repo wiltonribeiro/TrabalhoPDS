@@ -2,11 +2,12 @@ package pojo;
 
 import interfaces.Casa;
 import java.util.List;
+import pojo.Casas.Prisao;
 import pojo.Casas.Propriedade;
 import pojo.Casas.Terrenos.Terreno;
 import sun.security.jca.GetInstance;
 
-class Tabuleiro {    
+public class Tabuleiro {    
     private static Tabuleiro tabuleiro;
     private List<Casa> casas;
     private List<Carta> cartas;   
@@ -29,6 +30,10 @@ class Tabuleiro {
     
     public Casa obterCasaInicial(){
         return casas.get(0);
+    }
+    
+    public int obterPosicaoCasa(Casa casa){
+        return casas.indexOf(casa);
     }
     
     public Casa obterCasa(Casa localizacao, int valorDados){
@@ -54,11 +59,12 @@ class Tabuleiro {
                 Propriedade p = (Propriedade) casa;               
                 if(p.getProprietario() == null || !p.getProprietario().equals(jogador)) possuiTerreno = false;
             }
-        }
-        
-        System.out.println("-----");
-        
+        }                        
         return possuiTerreno;
-    }
+    }        
     
+    public Casa obterCasaPrisao(){        
+        for(Casa casa: casas) if(casa instanceof Prisao) return casa;                
+        return null;
+    }    
 }

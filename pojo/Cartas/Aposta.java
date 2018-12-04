@@ -2,7 +2,8 @@ package pojo.Cartas;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
+
+import controle.ControladorMenssagem;
 import pojo.Carta;
 import pojo.Jogador;
 import pojo.BancoImobiliario;
@@ -17,7 +18,7 @@ public class Aposta implements AcaoCarta{
         jogadores.forEach((j) -> {
             j.setSaldo(j.getSaldo() - 50);
         });
-        JOptionPane.showMessageDialog(null, carta.getDescricao());
+        ControladorMenssagem.getInstance().showMessageDialog(carta.getDescricao());
         jogador.devolverCarta(carta);
     }   
   

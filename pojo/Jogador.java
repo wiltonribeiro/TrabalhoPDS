@@ -1,9 +1,9 @@
 package pojo;
 
 import JGamePlay.GameImage;
+import controle.ControladorMenssagem;
 import interfaces.Casa;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import pojo.Cartas.SairPrisao;
 import pojo.Casas.Propriedade;
 
@@ -28,60 +28,61 @@ public class Jogador {
         this.tabuleiro = Tabuleiro.getInstance();
         this.rodadasPreso = 0;
         this.preso = false;
-        
         peca.acao(localizacao.getX(), localizacao.getY());                        
     }
     
-    public void validarJogadasDuplas(){
+    public boolean validarJogadasDuplas(){
                 
         int qtdDuplas = 0;
         while(copo.verificaDupla()) {
                 if(preso){
-                    JOptionPane.showMessageDialog(null,this.nome+" tirou uma dupla de Dados: " + copo.obterTotal()/copo.quantidadeDados());
+                	ControladorMenssagem.getInstance().showMessageDialog(this.nome+" tirou uma dupla de Dados: " + copo.obterTotal()/copo.quantidadeDados());
                     sairPrisao();
-                    break;
+                    return false;
                 }
             
         	qtdDuplas++;
-        	JOptionPane.showMessageDialog(null,this.nome+" tirou uma dupla de dados pela "+qtdDuplas+"º vez! Dados duplos: " + copo.obterTotal()/copo.quantidadeDados());
+        	ControladorMenssagem.getInstance().showMessageDialog(this.nome+" tirou uma dupla de dados pela "+qtdDuplas+"º vez! Dados duplos: " + copo.obterTotal()/copo.quantidadeDados());
         	if(qtdDuplas == 3) {
-        		JOptionPane.showMessageDialog(null, this.nome+" tirou três duplas de dados, vá para a prisão");
+        		ControladorMenssagem.getInstance().showMessageDialog(this.nome+" tirou três duplas de dados, vá para a prisão");
         		setLocalizacao(tabuleiro.obterCasaPrisao());
         		setPreso(true);                            
-        		break;
+        		return true;
         	}
         	peca.acao(localizacao.getX(), localizacao.getY()); 
         	copo.lancarDados();
         }
+        
+        return false;
     }
     
     public void realizaJogada(){        
     	copo.lancarDados();        
         
-        validarJogadasDuplas();      	                        
+        boolean presoPelosDados = validarJogadasDuplas();      	                        
 
-        if(preso){
+        if(preso && !presoPelosDados){
            if(possuiCartaSairPrisao()){
-               JOptionPane.showMessageDialog(null, this.nome+" vai sair da prisão porque sua carta te permite !");
+        	   ControladorMenssagem.getInstance().showMessageDialog(this.nome+" vai sair da prisão porque sua carta te permite !");
                usarCartaSairPrisao();
            } else{
                if(rodadasPreso == 3){
-                   JOptionPane.showMessageDialog(null, this.nome+" já está a três rodadas preso, pague 50 e continue jogando");
+            	   ControladorMenssagem.getInstance().showMessageDialog(this.nome+" já está a três rodadas preso, pague 50 e continue jogando");
                    this.setSaldo(this.getSaldo()-50);
                    this.sairPrisao();
                    movimentarJogador(copo.obterTotal());
                } else{
                     if(copo.verificaDupla()){
-                        JOptionPane.showMessageDialog(null, this.nome+" tirou uma dupla de dados ! Você saiu da prisão\n! Dados duplos: "+copo.obterTotal()/copo.quantidadeDados());
+                    	ControladorMenssagem.getInstance().showMessageDialog(this.nome+" tirou uma dupla de dados ! Você saiu da prisão\n! Dados duplos: "+copo.obterTotal()/copo.quantidadeDados());
                         sairPrisao();
                     }
                     else{
-                        JOptionPane.showMessageDialog(null, "Nada acontece, continue na prisão");
+                    	ControladorMenssagem.getInstance().showMessageDialog("Nada acontece, continue na prisão");
                         rodadasPreso++;                   
                     } 
                }               
            }
-        } else movimentarJogador(copo.obterTotal());                                                   
+        } else if(!preso && !presoPelosDados) movimentarJogador(copo.obterTotal());                                                   
     }       
     
     
@@ -94,9 +95,9 @@ public class Jogador {
         peca.acao(localizacao.getX(), localizacao.getY());              
                 
         
-        JOptionPane.showMessageDialog(null, "Ei "+this.getNome()+"! Seus dados deram "+valorDados);        
+        ControladorMenssagem.getInstance().showMessageDialog("Ei "+this.getNome()+"! Seus dados deram "+valorDados);        
         localizacao.acao(this);
-        JOptionPane.showMessageDialog(null, "Ei "+this.getNome()+"! Seus saldo é: "+this.getSaldo()+"\nSeus imovéis são:\n"+this.mostrarPropriedades());
+        ControladorMenssagem.getInstance().showMessageDialog("Ei "+this.getNome()+"! Seus saldo é: "+this.getSaldo()+"\nSeus imovéis são:\n"+this.mostrarPropriedades());
     }
     
     public void bonusDaRodada(){        

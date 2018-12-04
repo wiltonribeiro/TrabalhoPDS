@@ -1,6 +1,8 @@
 package pojo.Casas.Terrenos;
 
 import javax.swing.JOptionPane;
+
+import controle.ControladorMenssagem;
 import pojo.Casas.Propriedade;
 import pojo.Jogador;
 
@@ -78,12 +80,12 @@ public abstract class Terreno extends Propriedade{
         if(this.getProprietario() == null){            
             int resposta = JOptionPane.NO_OPTION;            
             if(jogador.getSaldo()>= this.getPreco())
-                resposta = JOptionPane.showConfirmDialog(null, "Deseja comprar o terreno "+this.getNome()+"?");                        
+                resposta = ControladorMenssagem.getInstance().showConfirmDialog("Deseja comprar o terreno "+this.getNome()+"?");                        
             if(resposta == JOptionPane.YES_OPTION) this.comprarPropriedade(jogador);
             else this.pagarTaxa(jogador);
             
         } else if(this.getProprietario().equals(jogador) && jogador.getSaldo()>= this.construirCasa && checarSePodeConstruir(this.getClass())){
-            int resposta = JOptionPane.showConfirmDialog(null, "Deseja construir uma casa ?");                        
+            int resposta = ControladorMenssagem.getInstance().showConfirmDialog("Deseja construir uma casa ?");                        
             if(resposta == JOptionPane.YES_OPTION) this.construirCasa(this.getClass());
             else this.pagarTaxa(jogador);
         } else {

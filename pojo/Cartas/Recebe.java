@@ -1,6 +1,6 @@
 package pojo.Cartas;
 
-import javax.swing.JOptionPane;
+import controle.ControladorMenssagem;
 import pojo.Carta;
 import pojo.Jogador;
 
@@ -18,7 +18,7 @@ public class Recebe implements AcaoCarta{
 
     @Override
     public void acaoCarta(Carta carta, Jogador jogador) {
-        JOptionPane.showMessageDialog(null, "Carta:\n"+carta.getDescricao()+"\nRecebe: "+this.valor);
+    	ControladorMenssagem.getInstance().showMessageDialog("Carta:\n"+carta.getDescricao()+"\nRecebe: "+this.valor);
         jogador.setSaldo(jogador.getSaldo()+this.valor);
         jogador.devolverCarta(carta);
     }

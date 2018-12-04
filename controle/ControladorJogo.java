@@ -14,19 +14,23 @@ public class ControladorJogo {
         banco = BancoImobiliario.getInstance();         
     }        
     
-    public void iniciar(){       
-        String entrada = JOptionPane.showInputDialog("Qual a quantidade de jogadores ?");
-        if(entrada != null){
-            int numJogadores = Integer.parseInt(entrada);
-            darInicio(numJogadores);
-        }        
+    public void iniciar(){
+    	try {
+    		String entrada = ControladorMenssagem.getInstance().showInputDialog("Qual a quantidade de jogadores ?");
+	        if(entrada != null){
+	            int numJogadores = Integer.parseInt(entrada);
+	            darInicio(numJogadores);
+	        }
+    	}catch(Exception e) {
+    		ControladorMenssagem.getInstance().showMessageDialog("Informe uma quantidade válida de jogadores");
+    	}
     }
     
     public void darInicio(int numJogadores){        
         Tela.getInstace().drawBackground();
         if(numJogadores<=6 && numJogadores>=2){
             for(int i = 0; i < numJogadores; i++){                
-                  String nome = JOptionPane.showInputDialog("Qual seu nome jogador "+(i+1)+" ?");
+                  String nome = ControladorMenssagem.getInstance().showInputDialog("Qual seu nome jogador "+(i+1)+" ?");
                   banco.addJogador(nome);
             }            
             iniciarJogada();
@@ -38,7 +42,6 @@ public class ControladorJogo {
         while(!banco.jogoAcabou()){
             banco.realizarJogada();            
         }
-        
-        JOptionPane.showMessageDialog(null, "O jogador "+banco.getVencedor().getNome()+" venceu");
+        ControladorMenssagem.getInstance().showMessageDialog("O jogador "+banco.getVencedor().getNome()+" venceu");
     }        
 }

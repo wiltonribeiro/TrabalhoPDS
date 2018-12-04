@@ -1,6 +1,8 @@
 package pojo.Casas;
 
 import javax.swing.JOptionPane;
+
+import controle.ControladorMenssagem;
 import pojo.Copo;
 import pojo.Jogador;
 
@@ -15,12 +17,12 @@ public class Companhia extends Propriedade{
     @Override
     public void acao(Jogador jogador) {
         
-        //avisar que caiu na companhia
+    	ControladorMenssagem.getInstance().showMessageDialog("Você caiu na companhia "+this.getNome());
         if(this.getProprietario() == null){
             int resposta = JOptionPane.NO_OPTION;
             
             if(jogador.getSaldo()>= this.getPreco())
-                resposta = JOptionPane.showConfirmDialog(null, "Deseja comprar a companhia "+this.getNome()+"?");
+                resposta = ControladorMenssagem.getInstance().showConfirmDialog("Deseja comprar a companhia "+this.getNome()+"?");
                         
             if(resposta == JOptionPane.YES_OPTION) this.comprarPropriedade(jogador);
             else {
@@ -28,9 +30,11 @@ public class Companhia extends Propriedade{
                 jogador.setSaldo(jogador.getSaldo()-valorTaxa);
             }
             
-        } else if(!this.getProprietario().equals(jogador)) pagarTaxa(jogador);
-        else{
-            //faz nada casa seja dono da companhia ?
+        } else {
+        	if(!this.getProprietario().equals(jogador)) {
+        		pagarTaxa(jogador);
+        		ControladorMenssagem.getInstance().showMessageDialog("Você pagou a taxa de "+calcularTaxa(jogador));
+        	}
         }
        
     }

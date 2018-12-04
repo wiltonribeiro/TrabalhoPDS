@@ -1,5 +1,6 @@
-package pojo.Cartas;
+package pojo.CartasAcao;
 
+import interfaces.AcaoCarta;
 import pojo.Tabuleiro;
 import interfaces.Casa;
 

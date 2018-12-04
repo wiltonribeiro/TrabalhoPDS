@@ -4,7 +4,7 @@ import JGamePlay.GameImage;
 import controle.ControladorMenssagem;
 import interfaces.Casa;
 import java.util.ArrayList;
-import pojo.Cartas.SairPrisao;
+import pojo.CartasAcao.SairPrisao;
 import pojo.Casas.Propriedade;
 
 public class Jogador {

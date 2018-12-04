@@ -1,7 +1,8 @@
 
-package pojo;
+package inicializador;
 
 import java.util.ArrayList;
+import pojo.Peca;
 
 public class InicializadorPecas {
     private ArrayList<Peca> pecas;

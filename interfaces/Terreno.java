@@ -1,4 +1,4 @@
-package pojo.Casas.Terrenos;
+package interfaces;
 
 import javax.swing.JOptionPane;
 

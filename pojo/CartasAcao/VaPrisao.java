@@ -1,5 +1,6 @@
-package pojo.Cartas;
+package pojo.CartasAcao;
 
+import interfaces.AcaoCarta;
 import interfaces.Casa;
 
 import controle.ControladorMenssagem;

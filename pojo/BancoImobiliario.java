@@ -1,5 +1,6 @@
 package pojo;
 
+import inicializador.InicializadorPecas;
 import JGamePlay.GameImage;
 import interfaces.Casa;
 import java.util.ArrayList;

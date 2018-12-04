@@ -1,4 +1,4 @@
-package pojo;
+package inicializador;
 
 import interfaces.Casa;
 import java.util.ArrayList;
@@ -10,14 +10,14 @@ import pojo.Casas.LucroDividendo;
 import pojo.Casas.ParadaLivre;
 import pojo.Casas.Prisao;
 import pojo.Casas.SorteReves;
-import pojo.Casas.Terrenos.TerrenoAmarelo;
-import pojo.Casas.Terrenos.TerrenoAzulClaro;
-import pojo.Casas.Terrenos.TerrenoAzulEscuro;
-import pojo.Casas.Terrenos.TerrenoLilas;
-import pojo.Casas.Terrenos.TerrenoRoxo;
-import pojo.Casas.Terrenos.TerrenoLaranja;
-import pojo.Casas.Terrenos.TerrenoVerde;
-import pojo.Casas.Terrenos.TerrenoVermelho;
+import pojo.Terrenos.TerrenoAmarelo;
+import pojo.Terrenos.TerrenoAzulClaro;
+import pojo.Terrenos.TerrenoAzulEscuro;
+import pojo.Terrenos.TerrenoLilas;
+import pojo.Terrenos.TerrenoRoxo;
+import pojo.Terrenos.TerrenoLaranja;
+import pojo.Terrenos.TerrenoVerde;
+import pojo.Terrenos.TerrenoVermelho;
 import pojo.Casas.VaParaPrisao;
 
 public class InicializadorCasas {

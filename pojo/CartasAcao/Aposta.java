@@ -1,5 +1,6 @@
-package pojo.Cartas;
+package pojo.CartasAcao;
 
+import interfaces.AcaoCarta;
 import java.util.ArrayList;
 import java.util.List;
 

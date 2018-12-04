@@ -1,13 +1,14 @@
-package pojo;
+package inicializador;
 
 import java.util.ArrayList;
 import java.util.List;
-import pojo.Cartas.Aposta;
-import pojo.Cartas.Paga;
-import pojo.Cartas.Recebe;
-import pojo.Cartas.SairPrisao;
-import pojo.Cartas.VaInicio;
-import pojo.Cartas.VaPrisao;
+import pojo.Carta;
+import pojo.CartasAcao.Aposta;
+import pojo.CartasAcao.Paga;
+import pojo.CartasAcao.Recebe;
+import pojo.CartasAcao.SairPrisao;
+import pojo.CartasAcao.VaInicio;
+import pojo.CartasAcao.VaPrisao;
 
 public class InicializadorCartas {    
     public static InicializadorCartas inicializadorCarta;

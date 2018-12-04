@@ -1,4 +1,6 @@
-package pojo.Casas.Terrenos;
+package pojo.Terrenos;
+
+import interfaces.Terreno;
 
 public class TerrenoAmarelo extends Terreno {
 

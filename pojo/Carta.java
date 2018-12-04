@@ -1,6 +1,6 @@
 package pojo;
 
-import pojo.Cartas.AcaoCarta;
+import interfaces.AcaoCarta;
 
 public class Carta {      
     private String descricao;

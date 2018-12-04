@@ -1,5 +1,6 @@
-package pojo.Casas.Terrenos;
+package pojo.Terrenos;
 
+import interfaces.Terreno;
 import pojo.Jogador;
 
 public class TerrenoAzulEscuro extends Terreno {

@@ -1,5 +1,5 @@
 
-package pojo.Cartas;
+package interfaces;
 
 import pojo.Carta;
 import pojo.Jogador;

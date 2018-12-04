@@ -1,10 +1,12 @@
 package pojo;
 
+import inicializador.InicializadorCartas;
+import inicializador.InicializadorCasas;
 import interfaces.Casa;
 import java.util.List;
 import pojo.Casas.Prisao;
 import pojo.Casas.Propriedade;
-import pojo.Casas.Terrenos.Terreno;
+import interfaces.Terreno;
 import sun.security.jca.GetInstance;
 
 public class Tabuleiro {    

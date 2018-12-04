@@ -13,7 +13,7 @@ public class InicializadorPecas {
     
     private void criarPecas(){
         for(int i=0; i<6; i++){
-            pecas.add(new Peca("recursos//sprite//pecas//peca"+(i+1)+".png"));
+            pecas.add(new Peca("src//recursos//sprite//pecas//peca"+(i+1)+".png"));
         }
     }
     

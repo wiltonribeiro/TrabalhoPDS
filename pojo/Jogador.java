@@ -32,41 +32,47 @@ public class Jogador {
         peca.acao(localizacao.getX(), localizacao.getY());                        
     }
     
-    public void realizaJogada(){        
-    	copo.lancarDados();
-        int valorDados = copo.obterTotal();
-        
+    public void validarJogadasDuplas(){
+                
         int qtdDuplas = 0;
         while(copo.verificaDupla()) {
+                if(preso){
+                    JOptionPane.showMessageDialog(null,this.nome+" tirou uma dupla de Dados: " + copo.obterTotal()/copo.quantidadeDados());
+                    sairPrisao();
+                    break;
+                }
+            
         	qtdDuplas++;
-        	JOptionPane.showMessageDialog(null, 
-    				"Você tirou uma dupla de dados pela "+qtdDuplas+"º vez! Dados duplos: " + valorDados/copo.quantidadeDados()
-    				);
+        	JOptionPane.showMessageDialog(null,this.nome+" tirou uma dupla de dados pela "+qtdDuplas+"º vez! Dados duplos: " + copo.obterTotal()/copo.quantidadeDados());
         	if(qtdDuplas == 3) {
-        		JOptionPane.showMessageDialog(null, "Você tirou três duplas de dados, vá para a prisão");
+        		JOptionPane.showMessageDialog(null, this.nome+" tirou três duplas de dados, vá para a prisão");
         		setLocalizacao(tabuleiro.obterCasaPrisao());
         		setPreso(true);                            
         		break;
         	}
-        	//peca.acao(localizacao.getX(), localizacao.getY()); 
+        	peca.acao(localizacao.getX(), localizacao.getY()); 
         	copo.lancarDados();
         }
+    }
+    
+    public void realizaJogada(){        
+    	copo.lancarDados();        
         
-        valorDados = copo.obterTotal();
+        validarJogadasDuplas();      	                        
 
         if(preso){
            if(possuiCartaSairPrisao()){
-               JOptionPane.showMessageDialog(null, "Você vai sair da prisão porque sua carta te permite !");
+               JOptionPane.showMessageDialog(null, this.nome+" vai sair da prisão porque sua carta te permite !");
                usarCartaSairPrisao();
            } else{
                if(rodadasPreso == 3){
-                   JOptionPane.showMessageDialog(null, "Você já está a três rodadas preso, pague 50 e continue jogando");
+                   JOptionPane.showMessageDialog(null, this.nome+" já está a três rodadas preso, pague 50 e continue jogando");
                    this.setSaldo(this.getSaldo()-50);
                    this.sairPrisao();
-                   movimentarJogador(valorDados);
+                   movimentarJogador(copo.obterTotal());
                } else{
                     if(copo.verificaDupla()){
-                        JOptionPane.showMessageDialog(null, "Você tirou uma dupla de dados ! Você saiu da prisão\n! Dados duplos: "+valorDados/copo.quantidadeDados());
+                        JOptionPane.showMessageDialog(null, this.nome+" tirou uma dupla de dados ! Você saiu da prisão\n! Dados duplos: "+copo.obterTotal()/copo.quantidadeDados());
                         sairPrisao();
                     }
                     else{
@@ -75,12 +81,11 @@ public class Jogador {
                     } 
                }               
            }
-        } else movimentarJogador(valorDados);                                                   
+        } else movimentarJogador(copo.obterTotal());                                                   
     }       
     
     
-    public void movimentarJogador(int valorDados){
-    
+    public void movimentarJogador(int valorDados){    
         Casa novaCasa = tabuleiro.obterCasa(localizacao, valorDados);                                             
         if(tabuleiro.obterPosicaoCasa(novaCasa) < tabuleiro.obterPosicaoCasa(localizacao))
             bonusDaRodada();

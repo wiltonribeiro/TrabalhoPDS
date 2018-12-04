@@ -14,7 +14,7 @@ public class Tela {
     private Tela(){
         janela = new Window(700,700);        
         keyboard = janela.getKeyboard();                             
-        backGround = new GameImage("recursos//sprite//fundo.jpg");
+        backGround = new GameImage("src//recursos//sprite//fundo.jpg");
     }
     
     public void drawBackground(){

@@ -59,7 +59,7 @@ public class InicializadorCartas {
         cartas.add(new Carta("Você tiru o primeiro lugar do tornei de tênis do seu clube. Parabéns !", new Recebe(100)));
         cartas.add(new Carta("Você apostou com seus parceiros deste jogo e ganhou, receba 50 de cada um.", new Aposta()));        
         cartas.add(new Carta("Avance até o ponto de partida e ...", new VaInicio()));
-        cartas.add(new Carta("Vá para a prisão sem receber nada, talvez eu lhe faça uma visita", new VaPrisao()));
+        cartas.add(new Carta("Vá para a prisão sem receber nada, talvez eu lhe faça uma visita", new VaPrisao()));        
     }
     
     public List<Carta> getCartas(){
